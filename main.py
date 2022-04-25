@@ -25,6 +25,7 @@ def simulate_motif_in_repertoires(pos, neg, motif: str, num_of_repertoires: int,
     random.seed(seed)
 
     repertoires = []
+    # list of boolean values that keeps track of which repertoires are positive and negative
     disease_list = []
 
     num_of_pos_in_pos_repertoires = percentage_pos_in_pos_reps * repertoire_size
@@ -55,10 +56,7 @@ def simulate_motif_in_repertoires(pos, neg, motif: str, num_of_repertoires: int,
 def create_receptor_sequence(seq: str, receptor_id):
     return ReceptorSequence(amino_acid_sequence=seq,
                             identifier=receptor_id,
-                            metadata=SequenceMetadata(v_gene="TRBV1",
-                                                      j_gene="TRBJ1",
-                                                      count=5,
-                                                      region_type="IMGT_CDR3"))
+                            metadata=SequenceMetadata(count=1, region_type="IMGT_CDR3"))
 
 
 def create_repertoire(sequence_objects, export_path, repertoire_id):
@@ -99,7 +97,8 @@ def main(positive_data_file_name: str, negative_data_file_name: str, given_motif
     tmp_path = export_path / "tmp"
     PathBuilder.build(tmp_path)
 
-    reps, disease_list = simulate_motif_in_repertoires(pos_seqs, neg_seqs, given_motif, num_of_repertoires, repertoire_size, percentage_pos_in_pos_reps, seed)
+    reps, disease_list = simulate_motif_in_repertoires(pos_seqs, neg_seqs, given_motif, num_of_repertoires,
+                                                       repertoire_size, percentage_pos_in_pos_reps, seed)
 
     repertoires = [
         create_repertoire([create_receptor_sequence(seq, i) for i, seq in enumerate(r, start=1)], tmp_path, num) for
@@ -128,4 +127,5 @@ if __name__ == '__main__':
     output = "airr_exporter_repertoire"
     seed = 1
 
-    main(positive_data_file_name, negative_data_file_name, given_motif, num_of_repertoires, repertoire_size, percentage_pos_in_pos_reps, output, seed = seed)
+    main(positive_data_file_name, negative_data_file_name, given_motif, num_of_repertoires, repertoire_size,
+         percentage_pos_in_pos_reps, output, seed=seed)
