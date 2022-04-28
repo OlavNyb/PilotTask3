@@ -124,7 +124,7 @@ if __name__ == '__main__':
     positive_data_file_name, negative_data_file_name = ("SimData/few_seqs.tsv", "SimData/many_seqs.tsv")
     given_motif = "SEY"
     num_of_repertoires, repertoire_size, percentage_pos_in_pos_reps = (100, 1000, 0.5)
-    output = "airr_exporter_repertoire"
+    output = "k-mer_airr_exporter_repertoire"
     seed = 1
 
     main(positive_data_file_name, negative_data_file_name, given_motif, num_of_repertoires, repertoire_size,
