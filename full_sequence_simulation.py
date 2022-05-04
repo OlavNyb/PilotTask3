@@ -116,7 +116,7 @@ def main(positive_data_file_name: str, negative_data_file_name: str, num_of_repe
 
 
 if __name__ == '__main__':
-    positive_data_file_name, negative_data_file_name = ("SimData/pos_data.tsv", "SimData/many_seqs.tsv")
+    positive_data_file_name, negative_data_file_name = ("SimData/pos_data.tsv", "SimData/neg_data.tsv")
     num_of_repertoires, repertoire_size, percentage_pos_in_pos_reps = (100, 1000, 0.5)
     output = "full_sequence_airr_exporter_repertoire"
     seed = 1
